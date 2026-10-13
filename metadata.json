@@ -1,0 +1,6 @@
+{
+  "name": "RIDA-AFAEK NTT - Penjaringan Isu & Kebutuhan Riset Daerah",
+  "description": "Platform Penghimpunan Isu Strategis dan Kebutuhan Riset Perangkat Daerah NTT (RIDA-AFAEK) Bapperida Provinsi Nusa Tenggara Timur.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
