@@ -62,7 +62,7 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
             <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
               Pantauan Isu Strategis Daerah
             </h2>
-            <p className="text-sm sm:text-base text-slate-600 max-w-2xl">
+            <p className="text-sm sm:text-base text-black max-w-2xl">
               Terhubung dengan data instrumen riset daerah (<strong className="text-slate-800 font-semibold">data untuk dasboard</strong>) yang otomatis terupdate saat terjadi penambahan usulan baru oleh Perangkat Daerah.
             </p>
           </div>
@@ -85,20 +85,20 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
               className="inline-flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-slate-900 hover:bg-slate-800 rounded-lg shadow-sm transition-colors"
             >
               <span>Lihat Rekapitulasi Lengkap</span>
-              <ChevronRight className="w-4 h-4 text-slate-400" />
+              <ChevronRight className="w-4 h-4 text-black" />
             </button>
           </div>
         </div>
 
         {/* Sync Status bar */}
-        <div className="py-3 flex items-center justify-between text-xs text-slate-500">
+        <div className="py-3 flex items-center justify-between text-xs text-black">
           <div className="flex items-center gap-2">
             <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
             <span>Database Status: <strong className="text-slate-700 font-medium">Terhubung & Aktif</strong></span>
             <span className="text-slate-300">·</span>
             <span>Pembaruan Terakhir: {lastUpdated || 'Hari ini'}</span>
           </div>
-          <div className="font-mono text-slate-600 tabular-nums hidden sm:block">
+          <div className="font-mono text-black tabular-nums hidden sm:block">
             {totalUsulan} Entri Terverifikasi
           </div>
         </div>
@@ -108,13 +108,13 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
           {/* Card 1: Total Usulan */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center justify-between">
             <div>
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-black uppercase tracking-wider block">
                 Total Usulan Riset
               </span>
               <div className="text-3xl font-black text-slate-900 mt-1 tabular-nums">
                 {totalUsulan}
               </div>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-black mt-1 block">
                 Terdokumentasi dalam instrumen
               </span>
             </div>
@@ -126,13 +126,13 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
           {/* Card 2: Total OPD */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center justify-between">
             <div>
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-black uppercase tracking-wider block">
                 Partisipasi OPD / Lembaga
               </span>
               <div className="text-3xl font-black text-slate-900 mt-1 tabular-nums">
                 {uniqueOPDs}
               </div>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-black mt-1 block">
                 Lembaga teknis pemprov terdaftar
               </span>
             </div>
@@ -144,13 +144,13 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
           {/* Card 3: Prioritas Mendesak */}
           <div className="bg-white p-6 rounded-2xl border border-slate-200/90 shadow-xs flex items-center justify-between">
             <div>
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-semibold text-black uppercase tracking-wider block">
                 Kajian Sangat Mendesak
               </span>
               <div className="text-3xl font-black text-amber-600 mt-1 tabular-nums">
                 {urgentProposals.length}
               </div>
-              <span className="text-xs text-slate-500 mt-1 block">
+              <span className="text-xs text-black mt-1 block">
                 Perlu penetapan tahun berjalan
               </span>
             </div>
@@ -170,11 +170,11 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
                   <BarChart3 className="w-5 h-5 text-emerald-600" />
                   Grafik Kelompok Masalah Terbanyak
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-black mt-0.5">
                   Distribusi proporsi isu strategis yang dihimpun dari perangkat daerah
                 </p>
               </div>
-              <span className="text-xs font-mono font-medium text-slate-500 tabular-nums">
+              <span className="text-xs font-mono font-medium text-black tabular-nums">
                 {categoryEntries.length} Kategori
               </span>
             </div>
@@ -190,7 +190,7 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
                         {category}
                       </span>
                       <div className="flex items-center gap-2 shrink-0">
-                        <span className="font-mono text-slate-500">{percentage}%</span>
+                        <span className="font-mono text-black">{percentage}%</span>
                         <span className="font-bold text-slate-900 tabular-nums">({count} usulan)</span>
                       </div>
                     </div>
@@ -207,7 +207,7 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
             </div>
 
             {/* Explanatory note */}
-            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
+            <div className="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-black">
               <span>* Data terhubung otomatis ke spreadsheet instrumen</span>
               <button
                 onClick={onOpenFullDashboard}
@@ -226,7 +226,7 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
                   <AlertTriangle className="w-5 h-5 text-amber-500" />
                   Usulan Kajian Mendesak
                 </h3>
-                <p className="text-xs text-slate-500 mt-0.5">
+                <p className="text-xs text-black mt-0.5">
                   Prioritas telaah riset untuk penyusunan rekomendasi
                 </p>
               </div>
@@ -253,8 +253,8 @@ export const DashboardHighlight: React.FC<DashboardHighlightProps> = ({
                     {prop.isuKrusial}
                   </h4>
 
-                  <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-500">
-                    <span className="truncate max-w-[200px] text-slate-600">
+                  <div className="mt-2 pt-2 border-t border-slate-100 flex items-center justify-between text-[11px] text-black">
+                    <span className="truncate max-w-[200px] text-black">
                       Output: {prop.outputRisetDiharapkan}
                     </span>
                     <span className="text-emerald-700 font-semibold group-hover:underline flex items-center gap-0.5 shrink-0">

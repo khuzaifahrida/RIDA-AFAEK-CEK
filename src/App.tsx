@@ -272,7 +272,7 @@ export default function App() {
                 <h2 className="text-3xl font-black text-slate-900 tracking-tight">
                   Pusat Bantuan &amp; Konfirmasi Teknis RIDA-AFAEK
                 </h2>
-                <p className="text-sm text-slate-600 leading-relaxed">
+                <p className="text-sm text-black leading-relaxed font-normal">
                   Layanan koordinasi resmi penjaringan isu strategis, fasilitasi naskah kebijakan, dan kemitraan riset daerah Provinsi NTT.
                 </p>
               </div>
@@ -283,7 +283,7 @@ export default function App() {
                     <MapPin className="w-6 h-6" />
                   </div>
                   <h4 className="font-bold text-base text-slate-900">Alamat Kantor</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-xs text-black leading-relaxed">
                     Jalan Polisi Militer Nomor 2, Oebobo, Kecamatan Oebobo, Kota Kupang, Nusa Tenggara Timur
                   </p>
                 </div>
@@ -293,12 +293,12 @@ export default function App() {
                     <Mail className="w-6 h-6" />
                   </div>
                   <h4 className="font-bold text-base text-slate-900">Surel Resmi</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-xs text-black leading-relaxed">
                     <a href="mailto:bridabapperidanttprov@gmail.com" className="text-emerald-700 font-semibold hover:underline">
                       bridabapperidanttprov@gmail.com
                     </a>
                   </p>
-                  <span className="text-[11px] text-slate-500 block">
+                  <span className="text-[11px] text-black font-medium block">
                     Respon koordinasi teknis dalam 1x24 jam kerja.
                   </span>
                 </div>
@@ -308,11 +308,11 @@ export default function App() {
                     <Clock className="w-6 h-6" />
                   </div>
                   <h4 className="font-bold text-base text-slate-900">Jam Operasional</h4>
-                  <p className="text-xs text-slate-600 leading-relaxed">
+                  <p className="text-xs text-black leading-relaxed">
                     Senin &ndash; Kamis: 07.30 &ndash; 16.00 WITA<br />
                     Jumat: 07.30 &ndash; 16.30 WITA
                   </p>
-                  <span className="text-[11px] text-slate-500 block">
+                  <span className="text-[11px] text-black font-medium block">
                     Sabtu, Minggu &amp; Libur Nasional Tutup
                   </span>
                 </div>

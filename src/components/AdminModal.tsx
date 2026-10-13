@@ -92,7 +92,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
             </div>
             <div>
               <h3 className="font-bold text-sm text-white">Panel Administrasi RIDA-AFAEK</h3>
-              <p className="text-[10px] text-slate-400">Bidang Riset dan Inovasi Daerah Bapperida NTT</p>
+              <p className="text-[10px] text-black">Bidang Riset dan Inovasi Daerah Bapperida NTT</p>
             </div>
           </div>
 
@@ -100,7 +100,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
             {isAdmin && (
               <button
                 onClick={() => onSetIsAdmin(false)}
-                className="px-2.5 py-1 text-xs text-slate-400 hover:text-white flex items-center gap-1 cursor-pointer"
+                className="px-2.5 py-1 text-xs text-black hover:text-white flex items-center gap-1 cursor-pointer"
                 title="Keluar Mode Admin"
               >
                 <LogOut className="w-3.5 h-3.5" />
@@ -109,7 +109,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
             )}
             <button
               onClick={onClose}
-              className="p-1 text-slate-400 hover:text-white rounded-lg cursor-pointer"
+              className="p-1 text-black hover:text-white rounded-lg cursor-pointer"
             >
               <X className="w-5 h-5" />
             </button>
@@ -124,7 +124,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 <Lock className="w-6 h-6" />
               </div>
               <h4 className="text-lg font-bold text-slate-900">Login Administrator</h4>
-              <p className="text-xs text-slate-500">
+              <p className="text-xs text-black">
                 Akses khusus pengelola Bapperida untuk mengedit skor, mengelola usulan, dan mengatur bobot prioritas.
               </p>
             </div>
@@ -173,7 +173,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 </button>
               </div>
 
-              <div className="text-[11px] text-center text-slate-400 pt-2">
+              <div className="text-[11px] text-center text-black pt-2">
                 * Kredensial demo: <code className="text-emerald-700 font-mono">admin</code> / <code className="text-emerald-700 font-mono">rida2026</code>
               </div>
             </form>
@@ -188,7 +188,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 className={`py-3 border-b-2 transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
                   activeTab === 'proposals'
                     ? 'border-emerald-600 text-emerald-700 font-bold'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    : 'border-transparent text-black hover:text-slate-800'
                 }`}
               >
                 <ListFilter className="w-3.5 h-3.5" />
@@ -200,7 +200,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 className={`py-3 border-b-2 transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
                   activeTab === 'weights'
                     ? 'border-emerald-600 text-emerald-700 font-bold'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    : 'border-transparent text-black hover:text-slate-800'
                 }`}
               >
                 <Sliders className="w-3.5 h-3.5" />
@@ -212,7 +212,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 className={`py-3 border-b-2 transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
                   activeTab === 'feedback'
                     ? 'border-emerald-600 text-emerald-700 font-bold'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    : 'border-transparent text-black hover:text-slate-800'
                 }`}
               >
                 <MessageSquare className="w-3.5 h-3.5" />
@@ -224,7 +224,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                 className={`py-3 border-b-2 transition-colors flex items-center gap-1.5 cursor-pointer whitespace-nowrap ${
                   activeTab === 'sync'
                     ? 'border-emerald-600 text-emerald-700 font-bold'
-                    : 'border-transparent text-slate-500 hover:text-slate-800'
+                    : 'border-transparent text-black hover:text-slate-800'
                 }`}
               >
                 <FileSpreadsheet className="w-3.5 h-3.5" />
@@ -262,12 +262,12 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                       <tbody className="divide-y divide-slate-100">
                         {proposals.map((p) => (
                           <tr key={p.id} className="hover:bg-slate-50">
-                            <td className="p-3 font-mono text-[11px] text-slate-400 whitespace-nowrap">
+                            <td className="p-3 font-mono text-[11px] text-black whitespace-nowrap">
                               {p.timestamp}
                             </td>
                             <td className="p-3">
                               <div className="font-semibold text-slate-900">{p.unitKerja || p.perangkatDaerah}</div>
-                              <div className="text-slate-500 text-[11px]">{p.penanggungJawab}</div>
+                              <div className="text-black text-[11px]">{p.penanggungJawab}</div>
                             </td>
                             <td className="p-3 max-w-xs truncate text-slate-800">
                               {p.isuKrusial}
@@ -301,7 +301,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   <h4 className="font-bold text-slate-800 text-sm">
                     Konfigurasi Bobot Penilaian Peringkat Prioritas
                   </h4>
-                  <p className="text-slate-500">
+                  <p className="text-black">
                     Atur pembobotan lima kriteria pemeringkatan (Urgensi, RPJMD, Riwayat Kajian, Kesiapan Data, Kesiapan Anggaran).
                   </p>
 
@@ -389,7 +389,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                   </h4>
 
                   {feedbacks.length === 0 ? (
-                    <div className="p-8 text-center text-slate-400 border border-slate-200 rounded-xl">
+                    <div className="p-8 text-center text-black border border-slate-200 rounded-xl">
                       Belum ada feedback yang masuk dari pengunjung.
                     </div>
                   ) : (
@@ -406,7 +406,7 @@ export const AdminModal: React.FC<AdminModalProps> = ({
                               </span>
                               <strong className="text-slate-900 font-semibold">{fb.instansi}</strong>
                             </div>
-                            <span className="text-slate-400 font-mono text-[11px]">
+                            <span className="text-black font-mono text-[11px]">
                               {fb.timestamp}
                             </span>
                           </div>

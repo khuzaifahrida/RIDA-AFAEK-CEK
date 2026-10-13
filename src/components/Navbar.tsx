@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import { ExternalLink, Menu, X } from 'lucide-react';
+import { RidaLogo } from './RidaLogo';
+import { ExternalLink, Menu, X, Home, BarChart3, PhoneCall, ChevronRight } from 'lucide-react';
 
 interface NavbarProps {
   activePage: 'beranda' | 'dasbor' | 'kontak';
@@ -10,135 +11,162 @@ export const Navbar: React.FC<NavbarProps> = ({
   activePage,
   onChangePage,
 }) => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
   const googleFormUrl = 'https://forms.gle/ymNeFCLEDnQfhkKCA';
 
   return (
-    <header className="sticky top-0 z-40 bg-white border-b border-slate-200/90 shadow-2xs transition-all">
+    <header className="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-2xs transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-20 gap-4">
-          {/* Sisi Kiri: Judul Bersih Tanpa Logo Sesuai Permintaan */}
-          <div className="flex items-center shrink-0">
-            <button
-              onClick={() => onChangePage('beranda')}
-              className="text-base font-extrabold text-slate-900 tracking-tight hover:text-emerald-700 transition-colors text-left"
-            >
-              RIDA-AFAEK <span className="text-xs font-semibold text-emerald-700 block sm:inline sm:ml-1">NTT</span>
-            </button>
-          </div>
+        <div className="flex items-center justify-between h-16 sm:h-20 gap-4">
+          {/* Sisi Kiri: Logo RIDA-AFAEK BAPPERIDA PROVINSI NTT Persis Seperti Gambar */}
+          <button
+            onClick={() => {
+              onChangePage('beranda');
+              window.scrollTo({ top: 0, behavior: 'smooth' });
+            }}
+            className="flex items-center text-left cursor-pointer group focus:outline-hidden"
+            title="Kembali ke Beranda"
+          >
+            <RidaLogo variant="navbar" />
+          </button>
 
-          {/* Sisi Kanan: Beranda, Dasbor, Kontak, dan Ajukan Usulan RATA KANAN SEMUA */}
-          <div className="hidden md:flex items-center justify-end gap-7 ml-auto">
-            <button
-              onClick={() => onChangePage('beranda')}
-              className={`text-sm font-semibold transition-colors py-1.5 whitespace-nowrap cursor-pointer ${
-                activePage === 'beranda'
-                  ? 'text-emerald-700 border-b-2 border-emerald-600 font-bold'
-                  : 'text-slate-700 hover:text-emerald-700'
-              }`}
-            >
-              Beranda
-            </button>
+          {/* Sisi Kanan: [Ajukan Usulan] + Tombol Menu Hamburger persis seperti gambar */}
+          <div className="flex items-center gap-2.5 sm:gap-4">
+            {/* Navigasi Desktop Cepat (Opsional & Halus) */}
+            <div className="hidden lg:flex items-center gap-6 mr-2">
+              <button
+                onClick={() => onChangePage('beranda')}
+                className={`text-sm font-semibold transition-colors py-1.5 cursor-pointer ${
+                  activePage === 'beranda'
+                    ? 'text-emerald-800 border-b-2 border-emerald-700 font-bold'
+                    : 'text-black hover:text-emerald-800'
+                }`}
+              >
+                Beranda
+              </button>
+              <button
+                onClick={() => onChangePage('dasbor')}
+                className={`text-sm font-semibold transition-colors py-1.5 cursor-pointer ${
+                  activePage === 'dasbor'
+                    ? 'text-emerald-800 border-b-2 border-emerald-700 font-bold'
+                    : 'text-black hover:text-emerald-800'
+                }`}
+              >
+                Dasbor
+              </button>
+              <button
+                onClick={() => onChangePage('kontak')}
+                className={`text-sm font-semibold transition-colors py-1.5 cursor-pointer ${
+                  activePage === 'kontak'
+                    ? 'text-emerald-800 border-b-2 border-emerald-700 font-bold'
+                    : 'text-black hover:text-emerald-800'
+                }`}
+              >
+                Kontak
+              </button>
+            </div>
 
-            <button
-              onClick={() => onChangePage('dasbor')}
-              className={`text-sm font-semibold transition-colors py-1.5 whitespace-nowrap cursor-pointer ${
-                activePage === 'dasbor'
-                  ? 'text-emerald-700 border-b-2 border-emerald-600 font-bold'
-                  : 'text-slate-700 hover:text-emerald-700'
-              }`}
-            >
-              Dasbor
-            </button>
-
-            <button
-              onClick={() => onChangePage('kontak')}
-              className={`text-sm font-semibold transition-colors py-1.5 whitespace-nowrap cursor-pointer ${
-                activePage === 'kontak'
-                  ? 'text-emerald-700 border-b-2 border-emerald-600 font-bold'
-                  : 'text-slate-700 hover:text-emerald-700'
-              }`}
-            >
-              Kontak
-            </button>
-
-            {/* Tombol Utama Ajukan Usulan di Ujung Pojok Kanan */}
+            {/* Tombol Utama: Ajukan Usulan (Warna Hijau Tua Sesuai Gambar #1b4d3e) */}
             <a
               href={googleFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2.5 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 whitespace-nowrap shrink-0 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:ring-offset-2"
+              className="inline-flex items-center justify-center px-4 sm:px-5 py-2 sm:py-2.5 text-xs sm:text-sm font-bold text-white bg-[#1b4d3e] hover:bg-[#143b2f] active:bg-[#0f2e24] rounded-lg sm:rounded-xl shadow-xs transition-all whitespace-nowrap cursor-pointer"
             >
-              <span>AJUKAN USULAN RISET</span>
-              <ExternalLink className="w-4 h-4 text-emerald-100" />
+              <span>Ajukan Usulan</span>
             </a>
-          </div>
 
-          {/* Mobile hamburger menu button */}
-          <div className="flex md:hidden items-center gap-2">
-            <a
-              href={googleFormUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 rounded-lg shadow-xs"
-            >
-              Ajukan Usulan
-            </a>
+            {/* Hamburger Menu Icon (Tiga Garis Horizontal Sesuai Gambar) */}
             <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg focus:outline-hidden"
-              aria-label="Toggle menu"
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="p-2 text-black hover:bg-slate-100 rounded-lg transition-colors focus:outline-hidden cursor-pointer"
+              aria-label="Buka menu navigasi"
+              title="Menu Navigasi"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {menuOpen ? (
+                <X className="w-6 h-6 stroke-[2.5]" />
+              ) : (
+                <Menu className="w-6 h-6 stroke-[2.5]" />
+              )}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile Drawer */}
-      {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-3 shadow-lg">
-          <button
-            onClick={() => {
-              onChangePage('beranda');
-              setMobileMenuOpen(false);
-            }}
-            className={`w-full text-left block px-3 py-2 text-base font-semibold rounded-lg ${
-              activePage === 'beranda' ? 'bg-emerald-50 text-emerald-800' : 'text-slate-800 hover:bg-slate-50'
-            }`}
-          >
-            Beranda
-          </button>
-          <button
-            onClick={() => {
-              onChangePage('dasbor');
-              setMobileMenuOpen(false);
-            }}
-            className={`w-full text-left block px-3 py-2 text-base font-semibold rounded-lg ${
-              activePage === 'dasbor' ? 'bg-emerald-50 text-emerald-800' : 'text-slate-800 hover:bg-slate-50'
-            }`}
-          >
-            Dasbor Isu Strategis
-          </button>
-          <button
-            onClick={() => {
-              onChangePage('kontak');
-              setMobileMenuOpen(false);
-            }}
-            className={`w-full text-left block px-3 py-2 text-base font-semibold rounded-lg ${
-              activePage === 'kontak' ? 'bg-emerald-50 text-emerald-800' : 'text-slate-800 hover:bg-slate-50'
-            }`}
-          >
-            Kontak & Pelayanan
-          </button>
-          <div className="pt-2 border-t border-slate-100">
+      {/* Dropdown Menu Drawer Saat Hamburger Diklik */}
+      {menuOpen && (
+        <div className="border-t border-slate-200 bg-white/98 backdrop-blur-md px-4 sm:px-6 py-4 space-y-2 shadow-xl animate-in slide-in-from-top-2 duration-150">
+          <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-3 gap-2">
+            <button
+              onClick={() => {
+                onChangePage('beranda');
+                setMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
+                activePage === 'beranda'
+                  ? 'bg-emerald-50 text-emerald-900 border border-emerald-200'
+                  : 'text-black hover:bg-slate-50 border border-transparent'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <Home className="w-4 h-4 text-emerald-700" />
+                <span>Beranda</span>
+              </div>
+              <ChevronRight className="w-4 h-4 opacity-50" />
+            </button>
+
+            <button
+              onClick={() => {
+                onChangePage('dasbor');
+                setMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
+                activePage === 'dasbor'
+                  ? 'bg-emerald-50 text-emerald-900 border border-emerald-200'
+                  : 'text-black hover:bg-slate-50 border border-transparent'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <BarChart3 className="w-4 h-4 text-teal-700" />
+                <span>Dasbor Isu Strategis</span>
+              </div>
+              <ChevronRight className="w-4 h-4 opacity-50" />
+            </button>
+
+            <button
+              onClick={() => {
+                onChangePage('kontak');
+                setMenuOpen(false);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`flex items-center justify-between px-4 py-3 rounded-xl text-sm font-bold transition-all cursor-pointer ${
+                activePage === 'kontak'
+                  ? 'bg-emerald-50 text-emerald-900 border border-emerald-200'
+                  : 'text-black hover:bg-slate-50 border border-transparent'
+              }`}
+            >
+              <div className="flex items-center gap-3">
+                <PhoneCall className="w-4 h-4 text-amber-700" />
+                <span>Kontak &amp; Pelayanan</span>
+              </div>
+              <ChevronRight className="w-4 h-4 opacity-50" />
+            </button>
+          </div>
+
+          <div className="pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+            <span className="text-black font-semibold">
+              Bapperida Pemerintah Provinsi Nusa Tenggara Timur
+            </span>
             <a
               href={googleFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full text-center block px-4 py-3 text-sm font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-700 rounded-xl shadow-md"
+              className="inline-flex items-center gap-1.5 font-bold text-emerald-800 hover:underline"
             >
-              AJUKAN USULAN RISET
+              <span>Formulir Usulan Riset</span>
+              <ExternalLink className="w-3 h-3" />
             </a>
           </div>
         </div>

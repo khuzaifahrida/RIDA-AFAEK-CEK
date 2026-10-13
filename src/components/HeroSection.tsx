@@ -1,6 +1,6 @@
 import React from 'react';
 import { RidaLogo } from './RidaLogo';
-import { ExternalLink, BarChart3, CheckCircle2 } from 'lucide-react';
+import { ExternalLink, BarChart3 } from 'lucide-react';
 
 interface HeroSectionProps {
   totalUsulan: number;
@@ -16,109 +16,117 @@ export const HeroSection: React.FC<HeroSectionProps> = ({
   const googleFormUrl = 'https://forms.gle/ymNeFCLEDnQfhkKCA';
 
   return (
-    <section id="beranda" className="relative overflow-hidden bg-white text-slate-900 pt-8 pb-16 lg:pt-14 lg:pb-24 border-b border-slate-200">
-      {/* Background Subtle Geometric Pattern - Clean Light White */}
-      <div className="absolute inset-0 pointer-events-none opacity-40">
-        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <pattern id="clean-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#F1F5F9" strokeWidth="1" />
-            </pattern>
-          </defs>
-          <rect width="100%" height="100%" fill="url(#clean-grid)" />
+    <section id="beranda" className="relative overflow-hidden bg-white text-black pt-8 pb-16 sm:pt-14 sm:pb-24 border-b border-slate-200">
+      {/* Background: Geometric Facet Wireframe Lines persis seperti pada latar belakang gambar */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden select-none opacity-30">
+        <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+          <g stroke="#94A3B8" strokeWidth="0.8" fill="none">
+            {/* Left background polygon facets */}
+            <path d="M -50 40 L 120 160 L 80 340 L -80 280 Z" />
+            <path d="M 120 160 L 220 80 L 190 280 L 80 340 Z" />
+            <path d="M 120 160 L 80 -40 L 220 80 Z" />
+            <path d="M 220 80 L 340 180 L 190 280 Z" />
+
+            {/* Right background polygon facets */}
+            <path d="M 850 60 L 1020 180 L 980 360 L 820 300 Z" />
+            <path d="M 1020 180 L 1150 100 L 1110 320 L 980 360 Z" />
+            <path d="M 720 120 L 850 60 L 820 300 Z" />
+            <path d="M 1020 180 L 1060 -20 L 1150 100 Z" />
+          </g>
         </svg>
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Center / Hero Card Container */}
-        <div className="text-center max-w-4xl mx-auto space-y-6">
-          {/* Institutional Badge */}
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-700 shadow-2xs">
-            <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>Bapperida Pemerintah Provinsi Nusa Tenggara Timur</span>
-            <span className="text-slate-300">·</span>
-            <span className="text-emerald-700">Tahun Anggaran 2026</span>
-          </div>
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center max-w-3xl mx-auto space-y-6 sm:space-y-8">
+          {/* CATATAN: Tulisan Bapperida hingga Tahun Anggaran 2026 telah DIHAPUS sesuai permintaan pengguna */}
 
-          {/* Logo RIDA-AFAEK - Logo yang Diupload dengan Tampilan Bersih */}
-          <div className="flex justify-center pt-2">
-            <div className="p-4 sm:p-6 rounded-2xl bg-white border border-slate-100 shadow-sm inline-block">
-              <RidaLogo variant="full" showTagline={true} />
+          {/* Center Card: Kotak Putih RIDA-AFAEK dengan Logo & Penjelasan (Persis Seperti Gambar) */}
+          <div className="inline-block w-full max-w-2xl mx-auto">
+            <div className="bg-white rounded-2xl sm:rounded-3xl border border-slate-200/90 shadow-lg shadow-slate-200/40 px-5 py-5 sm:px-8 sm:py-7">
+              <RidaLogo variant="hero-card" />
             </div>
           </div>
 
-          {/* Main Title */}
-          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight pt-2" style={{ textWrap: 'balance' }}>
-            PENGHIMPUNAN ISU STRATEGIS DAN KEBUTUHAN RISET PERANGKAT DAERAH NTT
-          </h1>
+          {/* Main Title: PENGHIMPUNAN ISU STRATEGIS DAN KEBUTUHAN RISET PERANGKAT DAERAH NTT (RIDA-AFAEK) */}
+          <div className="space-y-3 pt-1">
+            <h1
+              className="text-2xl sm:text-3xl md:text-4xl font-black tracking-tight text-[#0f2847] leading-tight max-w-3xl mx-auto uppercase"
+              style={{ textWrap: 'balance' }}
+            >
+              PENGHIMPUNAN ISU STRATEGIS<br />
+              DAN KEBUTUHAN RISET PERANGKAT<br />
+              DAERAH NTT (RIDA-AFAEK)
+            </h1>
 
-          {/* Subtitle */}
-          <p className="text-base sm:text-lg text-slate-600 font-normal leading-relaxed max-w-3xl mx-auto" style={{ textWrap: 'balance' }}>
-            Mari berkolaborasi menyusun solusi terbaik untuk pembangunan NTT yang lebih maju dan berkelanjutan melalui kebijakan berbasis bukti (<em className="text-emerald-700 not-italic font-semibold">evidence-based policy</em>).
-          </p>
+            {/* Deskripsi & Keterangan Tambahan */}
+            <p
+              className="text-xs sm:text-sm text-black font-medium leading-relaxed max-w-xl mx-auto pt-1"
+              style={{ textWrap: 'balance' }}
+            >
+              Mari berkolaborasi menyusun solusi terbaik untuk pembangunan NTT yang lebih maju dan berkelanjutan melalui kebijakan berbasis bukti (<em className="text-emerald-800 not-italic font-bold">evidence-based policy</em>).
+            </p>
+          </div>
 
-          {/* CTA Buttons */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-4">
-            {/* Primary CTA button */}
+          {/* Tombol CTA */}
+          <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
             <a
               href={googleFormUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 px-8 py-4 text-base font-bold text-white bg-gradient-to-r from-emerald-600 to-teal-700 hover:from-emerald-700 hover:to-teal-800 rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-hidden focus:ring-4 focus:ring-emerald-500/20"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs sm:text-sm font-bold text-white bg-[#1b4d3e] hover:bg-[#143b2f] active:bg-[#0f2e24] rounded-xl shadow-md hover:shadow-lg transition-all transform hover:-translate-y-0.5 active:translate-y-0 focus:outline-hidden"
             >
               <span>Mulai Isi Instrumen</span>
-              <ExternalLink className="w-5 h-5 text-emerald-100" />
+              <ExternalLink className="w-4 h-4 text-emerald-200" />
             </a>
 
-            {/* Secondary CTA button */}
             <button
               onClick={onExploreDashboard}
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-bold text-slate-700 bg-slate-50 hover:bg-slate-100 hover:text-slate-900 border border-slate-300 rounded-xl transition-all shadow-2xs focus:outline-hidden focus:ring-2 focus:ring-slate-300"
+              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-3.5 text-xs sm:text-sm font-bold text-black bg-slate-50 hover:bg-slate-100 border border-slate-300 rounded-xl transition-all shadow-2xs focus:outline-hidden cursor-pointer"
             >
-              <BarChart3 className="w-5 h-5 text-emerald-600" />
+              <BarChart3 className="w-4 h-4 text-[#1b4d3e]" />
               <span>Dasbor</span>
             </button>
           </div>
 
-          {/* Live Dynamic Stats Ribbon on Clean White Cards */}
-          <div className="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
-            <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
+          {/* Dynamic Live Stats Cards */}
+          <div className="pt-4 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-3xl mx-auto text-left">
+            <div className="p-3.5 rounded-xl bg-slate-50/90 border border-slate-200">
+              <span className="text-[10px] font-bold text-black uppercase tracking-wider block">
                 Total Usulan Masuk
               </span>
-              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 tabular-nums flex items-baseline gap-1">
+              <div className="text-xl sm:text-2xl font-black text-black mt-0.5 tabular-nums flex items-baseline gap-1">
                 <span>{totalUsulan}</span>
-                <span className="text-xs font-normal text-emerald-700 font-sans">Kajian</span>
+                <span className="text-[11px] font-bold text-emerald-800 font-sans">Kajian</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
+            <div className="p-3.5 rounded-xl bg-slate-50/90 border border-slate-200">
+              <span className="text-[10px] font-bold text-black uppercase tracking-wider block">
                 OPD Berpartisipasi
               </span>
-              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 tabular-nums flex items-baseline gap-1">
+              <div className="text-xl sm:text-2xl font-black text-black mt-0.5 tabular-nums flex items-baseline gap-1">
                 <span>{totalOPD}</span>
-                <span className="text-xs font-normal text-teal-700 font-sans">Instansi</span>
+                <span className="text-[11px] font-bold text-teal-800 font-sans">Instansi</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
+            <div className="p-3.5 rounded-xl bg-slate-50/90 border border-slate-200">
+              <span className="text-[10px] font-bold text-black uppercase tracking-wider block">
                 Skema Sinergi
               </span>
-              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 tabular-nums flex items-baseline gap-1">
+              <div className="text-xl sm:text-2xl font-black text-black mt-0.5 tabular-nums flex items-baseline gap-1">
                 <span>3</span>
-                <span className="text-xs font-normal text-amber-700 font-sans">Model Kerjasama</span>
+                <span className="text-[11px] font-bold text-amber-800 font-sans">Model Kerjasama</span>
               </div>
             </div>
 
-            <div className="p-4 rounded-xl bg-slate-50/80 border border-slate-200">
-              <span className="text-[11px] font-semibold text-slate-500 uppercase tracking-wider block">
-                Mitra Perguruan Tinggi
+            <div className="p-3.5 rounded-xl bg-slate-50/90 border border-slate-200">
+              <span className="text-[10px] font-bold text-black uppercase tracking-wider block">
+                Mitra Riset Daerah
               </span>
-              <div className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-1 tabular-nums flex items-baseline gap-1">
+              <div className="text-xl sm:text-2xl font-black text-black mt-0.5 tabular-nums flex items-baseline gap-1">
                 <span>Terbuka</span>
-                <span className="text-xs font-normal text-emerald-700 font-sans">Kolaborasi</span>
+                <span className="text-[11px] font-bold text-emerald-800 font-sans">Kolaborasi</span>
               </div>
             </div>
           </div>

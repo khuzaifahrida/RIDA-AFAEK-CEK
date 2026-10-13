@@ -15,7 +15,7 @@ export const CollaborationSection: React.FC = () => {
           <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight" style={{ textWrap: 'balance' }}>
             Skema Kolaborasi Riset Daerah
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed" style={{ textWrap: 'balance' }}>
+          <p className="text-base sm:text-lg text-black leading-relaxed" style={{ textWrap: 'balance' }}>
             Tersedia berbagai skema pendanaan dan kemitraan strategis untuk memastikan setiap kajian dapat dieksekusi secara optimal, akuntabel, dan berdaya guna bagi kebijakan publik NTT.
           </p>
         </div>
@@ -30,12 +30,12 @@ export const CollaborationSection: React.FC = () => {
             <h3 className="text-xl font-bold text-slate-900 mb-2">
               Full Dana RIDA / Pendanaan Penuh
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-6">
+            <p className="text-sm text-black leading-relaxed mb-6">
               Pembiayaan riset bersumber penuh dari alokasi anggaran khusus riset daerah pada DPA Bidang RIDA Bapperida NTT, atau pendanaan mandiri penuh dari perangkat daerah pengusul.
             </p>
-            <div className="mt-auto pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-2">
+            <div className="mt-auto pt-4 border-t border-slate-200/80 text-xs text-black space-y-2">
               <div className="font-semibold text-slate-700">Karakteristik Skema:</div>
-              <ul className="space-y-1 list-disc list-inside text-slate-600">
+              <ul className="space-y-1 list-disc list-inside text-black">
                 <li>Untuk isu prioritas makro lintas sektor Pemprov</li>
                 <li>Fasilitasi naskah kebijakan terpusat di Bapperida</li>
                 <li>Dikelola langsung oleh tim peneliti terpilih</li>
@@ -51,12 +51,12 @@ export const CollaborationSection: React.FC = () => {
             <h3 className="text-xl font-bold text-slate-900 mb-2">
               Sharing Dana & Sharing SDM
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-6">
+            <p className="text-sm text-black leading-relaxed mb-6">
               Pembiayaan dan pelaksanaan dilakukan secara bersama (cost & resource sharing) antara anggaran DPA OPD pengusul dengan Bidang RIDA, termasuk pelibatan jabatan fungsional perencana/peneliti.
             </p>
-            <div className="mt-auto pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-2">
+            <div className="mt-auto pt-4 border-t border-slate-200/80 text-xs text-black space-y-2">
               <div className="font-semibold text-slate-700">Karakteristik Skema:</div>
-              <ul className="space-y-1 list-disc list-inside text-slate-600">
+              <ul className="space-y-1 list-disc list-inside text-black">
                 <li>Efisiensi anggaran APBD tahun berjalan</li>
                 <li>Penguatan kapasitas fungsional teknis di OPD</li>
                 <li>Pendampingan metodologi oleh Tim Ahli RIDA</li>
@@ -72,12 +72,12 @@ export const CollaborationSection: React.FC = () => {
             <h3 className="text-xl font-bold text-slate-900 mb-2">
               Pelibatan Perguruan Tinggi & Mitra
             </h3>
-            <p className="text-sm text-slate-600 leading-relaxed mb-6">
+            <p className="text-sm text-black leading-relaxed mb-6">
               Sinergi akademis dan non-pemerintah dengan Universitas (seperti Undana, Unwira, dll) serta Lembaga Mitra (NGO, BRIN, swasta, dan komunitas pembangunan) untuk kajian independen.
             </p>
-            <div className="mt-auto pt-4 border-t border-slate-200/80 text-xs text-slate-500 space-y-2">
+            <div className="mt-auto pt-4 border-t border-slate-200/80 text-xs text-black space-y-2">
               <div className="font-semibold text-slate-700">Karakteristik Skema:</div>
-              <ul className="space-y-1 list-disc list-inside text-slate-600">
+              <ul className="space-y-1 list-disc list-inside text-black">
                 <li>Tri Dharma Perguruan Tinggi & KKN Tematik</li>
                 <li>Dukungan data primer dan pengujian lapangan</li>
                 <li>Kerjasama riset multi-tahun berkelanjutan</li>
@@ -145,7 +145,7 @@ export const CollaborationSection: React.FC = () => {
           </div>
 
           <div className="mt-8 pt-6 border-t border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-slate-400">
+            <p className="text-xs text-black">
               Ingin mendaftarkan lembaga Anda sebagai mitra periset resmi Bapperida NTT?
             </p>
             <a

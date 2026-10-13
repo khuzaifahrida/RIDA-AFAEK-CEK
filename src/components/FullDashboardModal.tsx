@@ -186,7 +186,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
               <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
                 Dashboard Rekapitulasi Lengkap
               </span>
-              <span className="text-slate-500">·</span>
+              <span className="text-black">·</span>
               <span className="text-xs text-slate-300 font-mono">
                 {filteredProposals.length} dari {proposals.length} Usulan
               </span>
@@ -214,7 +214,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
             </button>
             <button
               onClick={onClose}
-              className="p-1.5 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+              className="p-1.5 text-black hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
             >
               <X className="w-6 h-6" />
             </button>
@@ -225,7 +225,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
         <div className="p-4 bg-slate-50 border-b border-slate-200 flex flex-wrap items-center justify-between gap-3 text-xs">
           {/* Search Box */}
           <div className="relative flex-1 min-w-[240px]">
-            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+            <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-black" />
             <input
               type="text"
               placeholder="Cari isu, instansi, pengusul, atau kata kunci..."
@@ -236,7 +236,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm('')}
-                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600"
+                className="absolute right-2.5 top-1/2 -translate-y-1/2 text-black hover:text-black"
               >
                 ✕
               </button>
@@ -245,7 +245,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
 
           {/* Filter Dropdown Category */}
           <div className="flex items-center gap-2">
-            <span className="text-slate-500 font-medium">Kategori:</span>
+            <span className="text-black font-medium">Kategori:</span>
             <select
               value={selectedCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
@@ -261,7 +261,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
 
           {/* Filter Urgensi */}
           <div className="flex items-center gap-2">
-            <span className="text-slate-500 font-medium">Urgensi:</span>
+            <span className="text-black font-medium">Urgensi:</span>
             <select
               value={selectedUrgensi}
               onChange={(e) => setSelectedUrgensi(e.target.value)}
@@ -280,7 +280,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
               className={`px-3 py-1.5 rounded-md font-semibold transition-colors ${
                 viewMode === 'cards'
                   ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  : 'text-black hover:text-slate-900'
               }`}
             >
               Kartu
@@ -290,7 +290,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
               className={`px-3 py-1.5 rounded-md font-semibold transition-colors ${
                 viewMode === 'table'
                   ? 'bg-white text-slate-900 shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900'
+                  : 'text-black hover:text-slate-900'
               }`}
             >
               Tabel
@@ -353,9 +353,9 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
         <div className="p-6 overflow-y-auto flex-1 bg-slate-100">
           {filteredProposals.length === 0 ? (
             <div className="text-center py-16 bg-white rounded-2xl border border-slate-200">
-              <AlertCircle className="w-10 h-10 text-slate-400 mx-auto mb-3" />
+              <AlertCircle className="w-10 h-10 text-black mx-auto mb-3" />
               <h4 className="text-base font-bold text-slate-800">Tidak ada usulan yang cocok</h4>
-              <p className="text-xs text-slate-500 mt-1 max-w-sm mx-auto">
+              <p className="text-xs text-black mt-1 max-w-sm mx-auto">
                 Coba ubah kata kunci pencarian atau reset filter kategori di atas.
               </p>
               <button
@@ -382,7 +382,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
                     <span className="font-semibold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-sm line-clamp-1">
                       {prop.kelompokMasalah}
                     </span>
-                    <span className="text-[11px] text-slate-400 font-mono">
+                    <span className="text-[11px] text-black font-mono">
                       {prop.timestamp}
                     </span>
                   </div>
@@ -391,14 +391,14 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
                     {prop.isuKrusial}
                   </h4>
 
-                  <div className="space-y-1 text-xs text-slate-600 mb-4">
+                  <div className="space-y-1 text-xs text-black mb-4">
                     <p className="flex items-center gap-1.5">
-                      <Building className="w-3.5 h-3.5 text-slate-400 shrink-0" />
+                      <Building className="w-3.5 h-3.5 text-black shrink-0" />
                       <span className="line-clamp-1">
                         {prop.perangkatDaerah} &mdash; <strong>{prop.unitKerja}</strong>
                       </span>
                     </p>
-                    <p className="text-slate-500">
+                    <p className="text-black">
                       <strong>Pengusul:</strong> {prop.penanggungJawab}
                     </p>
                   </div>
@@ -438,12 +438,12 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
                         className="hover:bg-slate-50/80 transition-colors cursor-pointer"
                         onClick={() => onSelectProposal(prop)}
                       >
-                        <td className="p-3 font-mono text-slate-400">{idx + 1}</td>
+                        <td className="p-3 font-mono text-black">{idx + 1}</td>
                         <td className="p-3">
                           <div className="font-semibold text-slate-900 line-clamp-1">
                             {prop.unitKerja || prop.perangkatDaerah}
                           </div>
-                          <div className="text-[11px] text-slate-500 line-clamp-1">
+                          <div className="text-[11px] text-black line-clamp-1">
                             {prop.penanggungJawab}
                           </div>
                         </td>
@@ -457,7 +457,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
                             {prop.isuKrusial}
                           </p>
                         </td>
-                        <td className="p-3 line-clamp-2 text-slate-600">
+                        <td className="p-3 line-clamp-2 text-black">
                           {prop.outputRisetDiharapkan}
                         </td>
                         <td className="p-3">
@@ -471,7 +471,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
                               e.stopPropagation();
                               onSelectProposal(prop);
                             }}
-                            className="p-1.5 text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors"
+                            className="p-1.5 text-black hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors"
                           >
                             <Eye className="w-4 h-4" />
                           </button>
@@ -486,7 +486,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
         </div>
 
         {/* Modal Footer */}
-        <div className="p-4 bg-white border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+        <div className="p-4 bg-white border-t border-slate-200 flex items-center justify-between text-xs text-black">
           <span>
             Menampilkan <strong className="text-slate-800">{filteredProposals.length}</strong> usulan riset
           </span>
@@ -510,7 +510,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
               </div>
               <button
                 onClick={() => setShowAddForm(false)}
-                className="text-slate-400 hover:text-white"
+                className="text-black hover:text-white"
               >
                 ✕
               </button>
@@ -634,7 +634,7 @@ export const FullDashboardModal: React.FC<FullDashboardModalProps> = ({
                 <button
                   type="button"
                   onClick={() => setShowAddForm(false)}
-                  className="px-4 py-2 font-bold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg"
+                  className="px-4 py-2 font-bold text-black bg-slate-100 hover:bg-slate-200 rounded-lg"
                 >
                   Batal
                 </button>

@@ -1,4 +1,4 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import {
   ResearchProposal,
   PriorityScoreWeights,
@@ -31,6 +31,7 @@ import {
   FileCheck,
   Check,
   ChevronRight,
+  ChevronLeft,
 } from 'lucide-react';
 
 interface DashboardPageProps {
@@ -68,6 +69,10 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
   const [filterCategory, setFilterCategory] = useState<string>('Semua');
   const [filterPriority, setFilterPriority] = useState<string>('Semua');
   const [searchTerm, setSearchTerm] = useState<string>('');
+
+  // Pagination State (Proporsional & Pas Satu Halaman)
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const pageSize = 5;
 
   // Editing proposal scoring modal state
   const [editingProposal, setEditingProposal] = useState<ResearchProposal | null>(null);
@@ -137,6 +142,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
       })
       .sort((a, b) => (b.totalScore || 0) - (a.totalScore || 0)); // Rank by score descending
   }, [proposals, filterYear, filterCategory, filterPriority, searchTerm, weights]);
+
+  // Reset page to 1 when filters or search term change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filterYear, filterCategory, filterPriority, searchTerm]);
+
+  // Paginated proposals for proportional single-page view
+  const totalPages = Math.max(1, Math.ceil(filteredProposals.length / pageSize));
+  const paginatedProposals = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filteredProposals.slice(start, start + pageSize);
+  }, [filteredProposals, currentPage, pageSize]);
 
   // Submit Partner Intervention
   const handlePartnerSubmit = (e: React.FormEvent) => {
@@ -278,18 +295,18 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
     <div className="bg-white min-h-screen text-slate-900 pb-20">
       {/* Page Title & Navigation Bar */}
       <div className="border-b border-slate-200 bg-slate-50/70">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5 sm:py-6">
           <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
             <div>
               <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest flex items-center gap-1.5">
                 <BarChart3 className="w-4 h-4" />
                 Sistem Informasi Riset Daerah (SIRD) Bapperida NTT
               </span>
-              <h1 className="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight mt-1">
+              <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight mt-1">
                 Dasbor Penjaringan Isu & Peringkat Prioritas Riset
               </h1>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1 max-w-2xl">
-                Instrumen terpadu perumusan kebijakan berbasis bukti (evidence-based policy) selaras dengan Visi Pembangunan NTT 2025–2029 &amp; Spirit “Ayo Bangun NTT”.
+              <p className="text-xs text-black mt-1 max-w-xl">
+                Instrumen perumusan kebijakan berbasis bukti (<em className="text-emerald-800 not-italic font-semibold">evidence-based policy</em>) selaras Visi Pembangunan NTT 2025–2029 &amp; Spirit “Ayo Bangun NTT”.
               </p>
             </div>
 
@@ -298,7 +315,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 onClick={handleExportCSV}
                 className="inline-flex items-center gap-1.5 px-4 py-2 text-xs font-bold text-slate-700 bg-white hover:bg-slate-100 border border-slate-300 rounded-xl shadow-2xs transition-colors cursor-pointer"
               >
-                <Download className="w-3.5 h-3.5 text-slate-500" />
+                <Download className="w-3.5 h-3.5 text-black" />
                 <span>Unduh Rekapitulasi CSV</span>
               </button>
 
@@ -326,7 +343,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
                 activeTab === 'rekapitulasi'
                   ? 'bg-slate-900 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-black hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Award className="w-4 h-4 text-amber-400" />
@@ -338,7 +355,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
                 activeTab === 'trend'
                   ? 'bg-slate-900 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-black hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <TrendingUp className="w-4 h-4 text-emerald-400" />
@@ -350,7 +367,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
                 activeTab === 'visi'
                   ? 'bg-slate-900 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-black hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Layers className="w-4 h-4 text-teal-400" />
@@ -362,7 +379,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
                 activeTab === 'mitra'
                   ? 'bg-slate-900 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-black hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Handshake className="w-4 h-4 text-sky-400" />
@@ -374,7 +391,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               className={`px-4 py-2.5 rounded-xl transition-all cursor-pointer whitespace-nowrap flex items-center gap-2 ${
                 activeTab === 'bobot'
                   ? 'bg-slate-900 text-white shadow-xs'
-                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
+                  : 'text-black hover:text-slate-900 hover:bg-slate-100'
               }`}
             >
               <Sliders className="w-4 h-4 text-amber-400" />
@@ -384,61 +401,52 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         </div>
       </div>
 
-      {/* Main Container Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {/* Main Container Content: Max-w-5xl (Menyempit secara proporsional agar tidak melebar & pas satu halaman) */}
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-5">
         {/* ========================================================= */}
         {/* TAB 1: REKAPITULASI & PERINGKAT PRIORITAS RISET            */}
         {/* ========================================================= */}
         {activeTab === 'rekapitulasi' && (
-          <div className="space-y-6">
-            {/* Guide Info Banner: Panduan Peringkat Prioritas Riset */}
-            <div className="p-4 rounded-2xl bg-emerald-50/60 border border-emerald-200 text-xs">
-              <div className="flex flex-col md:flex-row md:items-center justify-between gap-3">
-                <div className="space-y-1">
-                  <span className="font-bold text-emerald-950 uppercase tracking-wider flex items-center gap-1.5 text-xs">
-                    <Award className="w-4 h-4 text-emerald-700" />
-                    Panduan Peringkat Prioritas Riset Daerah
+          <div className="space-y-3.5">
+            {/* Guide Info Banner: Ringkas & Padat */}
+            <div className="p-3 rounded-xl bg-emerald-50/70 border border-emerald-200/90 text-xs">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+                <div className="flex items-center gap-2">
+                  <Award className="w-4 h-4 text-emerald-700 shrink-0" />
+                  <span className="font-bold text-emerald-950">
+                    Formula Skor (0–100): Urgensi ({weights.urgensiWeight}%) + RPJMD ({weights.rpjmdWeight}%) + Riwayat ({weights.riwayatWeight}%) + Data ({weights.dataWeight}%) + Anggaran ({weights.anggaranWeight}%)
                   </span>
-                  <p className="text-emerald-900 leading-relaxed">
-                    <strong>Skor 0–100</strong> dihitung dari formula: <strong>Urgensi ({weights.urgensiWeight}%)</strong> + <strong>Keterkaitan RPJMD/Renstra/RKPD ({weights.rpjmdWeight}%)</strong> + <strong>Riwayat Kajian ({weights.riwayatWeight}%)</strong> + <strong>Kesiapan Data ({weights.dataWeight}%)</strong> + <strong>Kesiapan Anggaran ({weights.anggaranWeight}%)</strong>.
-                  </p>
                 </div>
-                <div className="flex items-center gap-2 shrink-0">
-                  <span className="px-2.5 py-1 rounded-md bg-emerald-700 text-white font-bold text-[11px]">
-                    Tier 1 (≥85): Sangat Tinggi
-                  </span>
-                  <span className="px-2.5 py-1 rounded-md bg-teal-700 text-white font-bold text-[11px]">
-                    Tier 2 (70-84): Tinggi
-                  </span>
-                  <span className="px-2.5 py-1 rounded-md bg-slate-700 text-white font-bold text-[11px]">
-                    Tier 3 (&lt;70): Menengah
-                  </span>
+                <div className="flex items-center gap-1.5 shrink-0 text-[10px] font-bold">
+                  <span className="px-2 py-0.5 rounded-md bg-emerald-700 text-white">Tier 1 (≥85)</span>
+                  <span className="px-2 py-0.5 rounded-md bg-teal-700 text-white">Tier 2 (70-84)</span>
+                  <span className="px-2 py-0.5 rounded-md bg-slate-700 text-white">Tier 3 (&lt;70)</span>
                 </div>
               </div>
             </div>
 
-            {/* Filters Toolbar */}
-            <div className="p-4 bg-slate-50 border border-slate-200 rounded-2xl flex flex-wrap items-center justify-between gap-3 text-xs">
+            {/* Filters Toolbar: Ringkas & Proporsional */}
+            <div className="p-2.5 sm:p-3 bg-slate-50 border border-slate-200 rounded-xl flex flex-wrap items-center justify-between gap-2.5 text-xs">
               {/* Search Box */}
-              <div className="relative flex-1 min-w-[240px]">
-                <Search className="w-4 h-4 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" />
+              <div className="relative flex-1 min-w-[200px]">
+                <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-black" />
                 <input
                   type="text"
                   placeholder="Cari isu, instansi, pengusul..."
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
-                  className="w-full pl-9 pr-4 py-2 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                  className="w-full pl-8 pr-3 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 text-xs"
                 />
               </div>
 
-              {/* Filter Tahun (Sesuai Permintaan) */}
+              {/* Filter Tahun */}
               <div className="flex items-center gap-1.5">
-                <Calendar className="w-3.5 h-3.5 text-slate-500" />
-                <span className="font-medium text-slate-600">Tahun:</span>
+                <Calendar className="w-3.5 h-3.5 text-black" />
+                <span className="font-semibold text-black">Tahun:</span>
                 <select
                   value={filterYear}
                   onChange={(e) => setFilterYear(e.target.value)}
-                  className="px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-800 font-semibold focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                  className="px-2 py-1 bg-white border border-slate-300 rounded-lg text-slate-800 font-semibold focus:outline-hidden focus:ring-2 focus:ring-emerald-500 text-xs"
                 >
                   {availableYears.map((yr) => (
                     <option key={yr} value={yr}>
@@ -450,12 +458,12 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
               {/* Filter Kelompok Masalah */}
               <div className="flex items-center gap-1.5">
-                <Filter className="w-3.5 h-3.5 text-slate-500" />
-                <span className="font-medium text-slate-600">Kelompok:</span>
+                <Filter className="w-3.5 h-3.5 text-black" />
+                <span className="font-semibold text-black">Kelompok:</span>
                 <select
                   value={filterCategory}
                   onChange={(e) => setFilterCategory(e.target.value)}
-                  className="max-w-[200px] truncate px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-800 font-semibold focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                  className="max-w-[160px] truncate px-2 py-1 bg-white border border-slate-300 rounded-lg text-slate-800 font-semibold focus:outline-hidden focus:ring-2 focus:ring-emerald-500 text-xs"
                 >
                   {availableCategories.map((c) => (
                     <option key={c} value={c}>
@@ -467,13 +475,13 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
               {/* Filter Prioritas Tier */}
               <div className="flex items-center gap-1.5">
-                <span className="font-medium text-slate-600">Prioritas:</span>
+                <span className="font-semibold text-black">Prioritas:</span>
                 <select
                   value={filterPriority}
                   onChange={(e) => setFilterPriority(e.target.value)}
-                  className="px-2.5 py-1.5 bg-white border border-slate-300 rounded-lg text-slate-800 font-semibold focus:outline-hidden focus:ring-2 focus:ring-emerald-500"
+                  className="px-2 py-1 bg-white border border-slate-300 rounded-lg text-slate-800 font-semibold focus:outline-hidden focus:ring-2 focus:ring-emerald-500 text-xs"
                 >
-                  <option value="Semua">Semua Prioritas</option>
+                  <option value="Semua">Semua</option>
                   <option value="Sangat Tinggi">Tier 1: Sangat Tinggi</option>
                   <option value="Tinggi">Tier 2: Tinggi</option>
                   <option value="Menengah">Tier 3: Menengah</option>
@@ -481,125 +489,165 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               </div>
             </div>
 
-            {/* Ranked Table View */}
-            <div className="bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-2xs">
+            {/* Ranked Table View: Proporsional & Pas Satu Halaman */}
+            <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-2xs">
               <div className="overflow-x-auto">
                 <table className="w-full text-left text-xs text-slate-800">
                   <thead className="bg-slate-50 border-b border-slate-200 text-slate-900 font-bold">
                     <tr>
-                      <th className="p-3.5 w-16 text-center">Peringkat</th>
-                      <th className="p-3.5 w-24 text-center">Skor (0-100)</th>
-                      <th className="p-3.5 w-44">Perangkat Daerah / Pengusul</th>
-                      <th className="p-3.5 w-44">Kelompok Masalah</th>
-                      <th className="p-3.5">Isu Krusial &amp; Output Rekomendasi</th>
-                      <th className="p-3.5 w-32">Kaitan Misi NTT</th>
-                      <th className="p-3.5 w-28 text-center">Aksi</th>
+                      <th className="py-2.5 px-3 w-24 text-center">Peringkat &amp; Skor</th>
+                      <th className="py-2.5 px-3 w-44">Perangkat Daerah / Pengusul</th>
+                      <th className="py-2.5 px-3">Isu Krusial &amp; Output Rekomendasi</th>
+                      <th className="py-2.5 px-3 w-40">Kelompok &amp; Visi NTT</th>
+                      <th className="py-2.5 px-3 w-20 text-center">Aksi</th>
                     </tr>
                   </thead>
                   <tbody className="divide-y divide-slate-100">
-                    {filteredProposals.map((prop, idx) => {
-                      const tierColor =
-                        prop.totalScore! >= 85
-                          ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
-                          : prop.totalScore! >= 70
-                          ? 'bg-teal-50 text-teal-800 border-teal-300'
-                          : 'bg-slate-100 text-slate-800 border-slate-300';
+                    {paginatedProposals.length === 0 ? (
+                      <tr>
+                        <td colSpan={5} className="py-8 text-center text-slate-500 font-medium">
+                          Tidak ada usulan riset yang sesuai dengan kriteria filter pencarian.
+                        </td>
+                      </tr>
+                    ) : (
+                      paginatedProposals.map((prop, idx) => {
+                        const globalRank = (currentPage - 1) * pageSize + idx + 1;
+                        const tierColor =
+                          prop.totalScore! >= 85
+                            ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                            : prop.totalScore! >= 70
+                            ? 'bg-teal-50 text-teal-800 border-teal-300'
+                            : 'bg-slate-100 text-slate-800 border-slate-300';
 
-                      return (
-                        <tr key={prop.id} className="hover:bg-slate-50/70 transition-colors">
-                          {/* Peringkat */}
-                          <td className="p-3.5 text-center font-bold text-base text-slate-800 font-mono">
-                            #{idx + 1}
-                          </td>
+                        return (
+                          <tr key={prop.id} className="hover:bg-slate-50/70 transition-colors">
+                            {/* Peringkat & Skor Terpadu */}
+                            <td className="py-2.5 px-3 text-center">
+                              <div className="inline-flex flex-col items-center">
+                                <div className="flex items-baseline gap-1">
+                                  <span className="font-bold text-xs text-slate-500 font-mono">#{globalRank}</span>
+                                  <span className="text-sm font-black text-slate-900 font-mono tabular-nums">
+                                    {prop.totalScore}
+                                  </span>
+                                </div>
+                                <span className={`text-[9px] font-bold px-1.5 py-0.5 rounded-md border mt-0.5 ${tierColor}`}>
+                                  {prop.priorityTier}
+                                </span>
+                              </div>
+                            </td>
 
-                          {/* Skor Berbobot */}
-                          <td className="p-3.5 text-center">
-                            <div className="inline-flex flex-col items-center">
-                              <span className="text-base font-black text-slate-900 font-mono tabular-nums leading-none">
-                                {prop.totalScore}
+                            {/* Perangkat Daerah */}
+                            <td className="py-2.5 px-3">
+                              <div className="font-bold text-slate-900 leading-tight line-clamp-1">
+                                {prop.unitKerja || prop.perangkatDaerah}
+                              </div>
+                              <div className="text-[11px] text-black mt-0.5 truncate font-medium">
+                                {prop.penanggungJawab}
+                              </div>
+                              <span className="inline-block mt-0.5 text-[10px] text-black font-mono">
+                                Thn {prop.tahun || '2026'}
                               </span>
-                              <span className={`text-[10px] font-bold px-2 py-0.5 rounded-full border mt-1 ${tierColor}`}>
-                                {prop.priorityTier}
+                            </td>
+
+                            {/* Isu Krusial & Output */}
+                            <td className="py-2.5 px-3 space-y-0.5">
+                              <p className="line-clamp-2 text-slate-900 font-medium leading-snug">
+                                {prop.isuKrusial}
+                              </p>
+                              <p className="text-[11px] text-black truncate">
+                                <strong className="text-black">Output:</strong> {prop.outputRisetDiharapkan}
+                              </p>
+                            </td>
+
+                            {/* Kelompok Masalah & Kaitan Visi NTT */}
+                            <td className="py-2.5 px-3 space-y-1">
+                              <span className="font-bold text-emerald-900 bg-emerald-50 px-2 py-0.5 rounded-md block leading-tight border border-emerald-100 text-[10px] truncate">
+                                {prop.kelompokMasalah}
                               </span>
-                            </div>
-                          </td>
+                              <div className="inline-flex items-center gap-1 px-1.5 py-0.5 rounded-md bg-sky-50 text-sky-900 font-bold border border-sky-200 text-[9px] truncate">
+                                <span>Misi: {prop.misiNTT || 'MAJU'}</span>
+                              </div>
+                            </td>
 
-                          {/* Perangkat Daerah */}
-                          <td className="p-3.5">
-                            <div className="font-bold text-slate-900 leading-tight">
-                              {prop.unitKerja || prop.perangkatDaerah}
-                            </div>
-                            <div className="text-[11px] text-slate-500 mt-0.5 truncate">
-                              {prop.penanggungJawab}
-                            </div>
-                            <span className="inline-block mt-1 text-[10px] text-slate-400 font-mono">
-                              Tahun: {prop.tahun || '2026'}
-                            </span>
-                          </td>
-
-                          {/* Kelompok Masalah */}
-                          <td className="p-3.5">
-                            <span className="font-semibold text-emerald-800 bg-emerald-50/80 px-2.5 py-1 rounded-md block leading-tight border border-emerald-100">
-                              {prop.kelompokMasalah}
-                            </span>
-                          </td>
-
-                          {/* Isu Krusial & Output */}
-                          <td className="p-3.5 space-y-1">
-                            <p className="line-clamp-2 text-slate-800 font-medium leading-relaxed">
-                              {prop.isuKrusial}
-                            </p>
-                            <p className="text-[11px] text-slate-500 truncate">
-                              <strong className="text-slate-600">Output:</strong> {prop.outputRisetDiharapkan}
-                            </p>
-                          </td>
-
-                          {/* Kaitan Visi & Misi */}
-                          <td className="p-3.5">
-                            <div className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-sky-50 text-sky-800 font-bold border border-sky-200 text-[10px]">
-                              <span>Misi: {prop.misiNTT || 'MAJU'}</span>
-                            </div>
-                            <div className="text-[10px] text-slate-500 mt-1 line-clamp-1">
-                              {prop.pilarNTT || 'Pilar Pembangunan'}
-                            </div>
-                          </td>
-
-                          {/* Tombol Aksi & Tombol Edit (Hanya Admin) */}
-                          <td className="p-3.5 text-center">
-                            <div className="flex items-center justify-center gap-1.5">
-                              <button
-                                onClick={() => onSelectProposal(prop)}
-                                title="Lihat Berkas Usulan"
-                                className="p-2 text-slate-600 hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors cursor-pointer"
-                              >
-                                <Eye className="w-4 h-4" />
-                              </button>
-
-                              {/* Tombol Edit Skor Khusus Admin */}
-                              {isAdmin ? (
+                            {/* Tombol Aksi & Tombol Edit */}
+                            <td className="py-2.5 px-3 text-center">
+                              <div className="flex items-center justify-center gap-1">
                                 <button
-                                  onClick={() => setEditingProposal(prop)}
-                                  title="Edit Skor Prioritas (Admin)"
-                                  className="p-2 text-amber-700 hover:text-amber-900 hover:bg-amber-50 rounded-lg transition-colors cursor-pointer"
+                                  onClick={() => onSelectProposal(prop)}
+                                  title="Lihat Berkas Usulan"
+                                  className="p-1.5 text-black hover:text-emerald-700 hover:bg-emerald-50 rounded-lg transition-colors cursor-pointer"
                                 >
-                                  <Edit3 className="w-4 h-4" />
+                                  <Eye className="w-4 h-4" />
                                 </button>
-                              ) : (
-                                <button
-                                  onClick={onOpenAdminLogin}
-                                  title="Login Admin untuk Edit Skor"
-                                  className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
-                                >
-                                  <Edit3 className="w-4 h-4 opacity-50" />
-                                </button>
-                              )}
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
+
+                                {isAdmin ? (
+                                  <button
+                                    onClick={() => setEditingProposal(prop)}
+                                    title="Edit Skor Prioritas (Admin)"
+                                    className="p-1.5 text-amber-700 hover:text-amber-900 hover:bg-amber-50 rounded-lg transition-colors cursor-pointer"
+                                  >
+                                    <Edit3 className="w-4 h-4" />
+                                  </button>
+                                ) : (
+                                  <button
+                                    onClick={onOpenAdminLogin}
+                                    title="Login Admin untuk Edit Skor"
+                                    className="p-1.5 text-black hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
+                                  >
+                                    <Edit3 className="w-4 h-4 opacity-40" />
+                                  </button>
+                                )}
+                              </div>
+                            </td>
+                          </tr>
+                        );
+                      })
+                    )}
                   </tbody>
                 </table>
+              </div>
+
+              {/* Bar Navigasi Pagination: Pas Satu Halaman */}
+              <div className="border-t border-slate-200 bg-slate-50/60 px-3.5 py-2.5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs">
+                <span className="text-black font-medium">
+                  Menampilkan <strong className="text-slate-900">{filteredProposals.length === 0 ? 0 : (currentPage - 1) * pageSize + 1}</strong> &ndash; <strong className="text-slate-900">{Math.min(currentPage * pageSize, filteredProposals.length)}</strong> dari <strong className="text-emerald-800">{filteredProposals.length}</strong> Usulan
+                </span>
+
+                {totalPages > 1 && (
+                  <div className="flex items-center gap-1">
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                      disabled={currentPage === 1}
+                      className="p-1 rounded-md border border-slate-200 bg-white text-black hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                      title="Halaman Sebelumnya"
+                    >
+                      <ChevronLeft className="w-3.5 h-3.5" />
+                    </button>
+
+                    {Array.from({ length: totalPages }, (_, i) => i + 1).map((num) => (
+                      <button
+                        key={num}
+                        onClick={() => setCurrentPage(num)}
+                        className={`w-6 h-6 rounded-md text-xs font-bold transition-colors cursor-pointer ${
+                          currentPage === num
+                            ? 'bg-slate-900 text-white'
+                            : 'border border-slate-200 bg-white text-black hover:bg-slate-100'
+                        }`}
+                      >
+                        {num}
+                      </button>
+                    ))}
+
+                    <button
+                      onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+                      disabled={currentPage === totalPages}
+                      className="p-1 rounded-md border border-slate-200 bg-white text-black hover:bg-slate-100 disabled:opacity-30 disabled:cursor-not-allowed cursor-pointer"
+                      title="Halaman Berikutnya"
+                    >
+                      <ChevronRight className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -614,7 +662,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               <h3 className="text-xl font-black text-slate-900">
                 Sistem Informasi Riset Daerah: Analisis Tren Usulan
               </h3>
-              <p className="text-xs text-slate-500 mt-0.5">
+              <p className="text-xs text-black mt-0.5">
                 Visualisasi dinamika usulan riset, timeline penjaringan, dan keterkaitan sektoral.
               </p>
             </div>
@@ -622,7 +670,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
             {/* Key Trend Statistics Strip */}
             <div className="grid grid-cols-1 sm:grid-cols-4 gap-4">
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-black uppercase tracking-wider block">
                   Total Usulan Terinput
                 </span>
                 <div className="text-3xl font-black text-slate-900 font-mono mt-1">
@@ -634,31 +682,31 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               </div>
 
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-black uppercase tracking-wider block">
                   Usulan Tier 1 (Mendesak)
                 </span>
                 <div className="text-3xl font-black text-emerald-700 font-mono mt-1">
                   {proposals.filter((p) => (p.totalScore || 0) >= 85).length}
                 </div>
-                <span className="text-xs text-slate-500 font-medium block mt-1">
+                <span className="text-xs text-black font-medium block mt-1">
                   Skor prioritas &ge; 85
                 </span>
               </div>
 
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-black uppercase tracking-wider block">
                   Dukungan Kemitraan Mitra
                 </span>
                 <div className="text-3xl font-black text-teal-700 font-mono mt-1">
                   {partnerInterventions.length}
                 </div>
-                <span className="text-xs text-slate-500 font-medium block mt-1">
+                <span className="text-xs text-black font-medium block mt-1">
                   Permohonan intervensi aktif
                 </span>
               </div>
 
               <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200">
-                <span className="text-[11px] font-bold text-slate-500 uppercase tracking-wider block">
+                <span className="text-[11px] font-bold text-black uppercase tracking-wider block">
                   Rata-Rata Skor Usulan
                 </span>
                 <div className="text-3xl font-black text-amber-700 font-mono mt-1">
@@ -667,7 +715,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                       (proposals.length || 1)
                   )}
                 </div>
-                <span className="text-xs text-slate-500 font-medium block mt-1">
+                <span className="text-xs text-black font-medium block mt-1">
                   Skala evaluasi 0&ndash;100
                 </span>
               </div>
@@ -681,7 +729,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <TrendingUp className="w-5 h-5 text-emerald-600" />
                   Tren Progres Penjaringan Riset (2026)
                 </h4>
-                <p className="text-xs text-slate-500 mb-6">
+                <p className="text-xs text-black mb-6">
                   Distribusi volume usulan yang diajukan perangkat daerah menurut fase perencanaan
                 </p>
 
@@ -690,7 +738,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <div>
                     <div className="flex justify-between text-xs mb-1 font-semibold">
                       <span>Triwulan I (Januari &ndash; Maret)</span>
-                      <span className="font-mono text-slate-600">2 Usulan (25%)</span>
+                      <span className="font-mono text-black">2 Usulan (25%)</span>
                     </div>
                     <div className="w-full h-3 rounded-full bg-slate-100 overflow-hidden">
                       <div className="h-full bg-emerald-500 rounded-full w-[25%]" />
@@ -700,7 +748,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <div>
                     <div className="flex justify-between text-xs mb-1 font-semibold">
                       <span>Triwulan II (April &ndash; Juni)</span>
-                      <span className="font-mono text-slate-600">3 Usulan (38%)</span>
+                      <span className="font-mono text-black">3 Usulan (38%)</span>
                     </div>
                     <div className="w-full h-3 rounded-full bg-slate-100 overflow-hidden">
                       <div className="h-full bg-teal-500 rounded-full w-[38%]" />
@@ -710,7 +758,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <div>
                     <div className="flex justify-between text-xs mb-1 font-semibold">
                       <span>Triwulan III (Juli &ndash; September)</span>
-                      <span className="font-mono text-slate-600">4 Usulan (50%)</span>
+                      <span className="font-mono text-black">4 Usulan (50%)</span>
                     </div>
                     <div className="w-full h-3 rounded-full bg-slate-100 overflow-hidden">
                       <div className="h-full bg-sky-600 rounded-full w-[50%]" />
@@ -720,7 +768,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <div>
                     <div className="flex justify-between text-xs mb-1 font-semibold">
                       <span>Triwulan IV (Oktober &ndash; Desember) &ndash; Aktif</span>
-                      <span className="font-mono text-slate-600">6+ Usulan (Proyeksi 75%)</span>
+                      <span className="font-mono text-black">6+ Usulan (Proyeksi 75%)</span>
                     </div>
                     <div className="w-full h-3 rounded-full bg-slate-100 overflow-hidden">
                       <div className="h-full bg-amber-500 rounded-full w-[75%]" />
@@ -735,7 +783,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <BarChart3 className="w-5 h-5 text-teal-600" />
                   Sebaran Usulan Menurut Misi Pembangunan NTT
                 </h4>
-                <p className="text-xs text-slate-500 mb-6">
+                <p className="text-xs text-black mb-6">
                   Keterkaitan langsung terhadap arah kebijakan pembangunan jangka menengah
                 </p>
 
@@ -748,7 +796,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                       <div key={misi.misiId} className="space-y-1">
                         <div className="flex justify-between text-xs font-semibold">
                           <span className="text-slate-800">{misi.nomor}: {misi.nama}</span>
-                          <span className="font-mono text-slate-600">{count} Kajian ({percent}%)</span>
+                          <span className="font-mono text-black">{count} Kajian ({percent}%)</span>
                         </div>
                         <div className="w-full h-2.5 rounded-full bg-slate-100 overflow-hidden">
                           <div
@@ -775,7 +823,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               <h3 className="text-2xl font-black text-slate-900">
                 Misi Pembangunan
               </h3>
-              <p className="text-xs sm:text-sm text-slate-600 mt-1">
+              <p className="text-xs sm:text-sm text-black mt-1">
                 Lima misi beserta pilar pembangunan dan Dasa Cita yang menjabarkannya (Tabel 4.1 P-RKPD).
               </p>
             </div>
@@ -843,7 +891,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                       <h4 className="text-sm font-bold text-slate-900">
                         {pilar.nama}
                       </h4>
-                      <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">
+                      <p className="text-xs text-black mt-0.5 leading-relaxed">
                         {pilar.deskripsi}
                       </p>
                     </div>
@@ -865,7 +913,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <h3 className="text-xl font-bold text-slate-900">
                   Ajukan Permohonan Intervensi Mitra
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-600 mt-1">
+                <p className="text-xs sm:text-sm text-black mt-1">
                   Untuk perguruan tinggi, lembaga penelitian, dan mitra pembangunan yang bersedia menangani masalah yang diajukan perangkat daerah. Permohonan diverifikasi Bapperida sebelum berstatus kerja sama.
                 </p>
               </div>
@@ -1032,7 +1080,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                   <h4 className="text-lg font-bold text-slate-900">
                     Sistem Analisis &amp; Rekapitulasi Mitra Terdaftar
                   </h4>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-black">
                     Daftar permohonan kemitraan riset yang masuk dan status verifikasi Bapperida NTT
                   </p>
                 </div>
@@ -1057,7 +1105,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                     <tbody className="divide-y divide-slate-100">
                       {partnerInterventions.map((item, idx) => (
                         <tr key={item.id} className="hover:bg-slate-50/60 transition-colors">
-                          <td className="p-3 text-center font-mono text-slate-400">{idx + 1}</td>
+                          <td className="p-3 text-center font-mono text-black">{idx + 1}</td>
                           <td className="p-3">
                             <div className="font-bold text-slate-900">{item.namaLembaga}</div>
                             <span className="inline-block mt-0.5 px-2 py-0.5 rounded-sm bg-sky-50 text-sky-800 text-[10px] font-semibold">
@@ -1146,7 +1194,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               <h3 className="text-xl font-bold text-slate-900">
                 Pengaturan Bobot Kriteria Peringkat Prioritas Riset
               </h3>
-              <p className="text-xs text-slate-500 mt-1">
+              <p className="text-xs text-black mt-1">
                 Sesuaikan proporsi bobot untuk perhitungan skor 0&ndash;100. Total persentase harus tepat 100.
               </p>
             </div>
@@ -1263,7 +1311,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setEditWeights(DEFAULT_WEIGHTS)}
-                  className="px-4 py-2.5 font-semibold text-slate-600 hover:bg-slate-100 rounded-xl transition-colors"
+                  className="px-4 py-2.5 font-semibold text-black hover:bg-slate-100 rounded-xl transition-colors"
                 >
                   Kembalikan ke Default
                 </button>
@@ -1284,7 +1332,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               </div>
               <button
                 onClick={() => setEditingProposal(null)}
-                className="text-slate-400 hover:text-white"
+                className="text-black hover:text-white"
               >
                 ✕
               </button>
@@ -1292,11 +1340,11 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
             <form onSubmit={handleSaveScoreEdit} className="p-6 space-y-4 text-xs">
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200">
-                <span className="text-slate-500 font-semibold block">Usulan:</span>
+                <span className="text-black font-semibold block">Usulan:</span>
                 <h5 className="font-bold text-slate-900 line-clamp-2 mt-0.5">
                   {editingProposal.isuKrusial}
                 </h5>
-                <span className="text-slate-500 text-[11px] block mt-1">
+                <span className="text-black text-[11px] block mt-1">
                   {editingProposal.perangkatDaerah}
                 </span>
               </div>
@@ -1420,7 +1468,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
                 <button
                   type="button"
                   onClick={() => setEditingProposal(null)}
-                  className="px-4 py-2 font-semibold text-slate-600 bg-slate-100 hover:bg-slate-200 rounded-lg"
+                  className="px-4 py-2 font-semibold text-black bg-slate-100 hover:bg-slate-200 rounded-lg"
                 >
                   Batal
                 </button>

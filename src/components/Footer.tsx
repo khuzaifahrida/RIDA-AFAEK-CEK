@@ -21,7 +21,7 @@ export const Footer: React.FC<FooterProps> = ({
   };
 
   return (
-    <footer id="kontak" className="bg-white text-slate-600 border-t border-slate-200 text-xs">
+    <footer id="kontak" className="bg-white text-black border-t border-slate-200 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-3 gap-10">
           {/* Col 1: Alamat Kantor & Lokasi (Logo RIDA & deskripsi dihapus sesuai instruksi) */}
@@ -29,17 +29,17 @@ export const Footer: React.FC<FooterProps> = ({
             <h4 className="text-sm font-bold text-slate-900 uppercase tracking-wider">
               Kantor Bapperida NTT
             </h4>
-            <div className="flex items-start gap-2.5 text-slate-700 leading-relaxed">
+            <div className="flex items-start gap-2.5 text-black leading-relaxed font-normal">
               <MapPin className="w-4 h-4 text-emerald-600 shrink-0 mt-0.5" />
               <span>
                 Jalan Polisi Militer Nomor 2, Oebobo, Kecamatan Oebobo, Kota Kupang, Nusa Tenggara Timur
               </span>
             </div>
-            <div className="pt-1 flex items-center gap-2 text-slate-700">
+            <div className="pt-1 flex items-center gap-2 text-black">
               <Mail className="w-4 h-4 text-emerald-600 shrink-0" />
               <a
                 href="mailto:bridabapperidanttprov@gmail.com"
-                className="hover:text-emerald-700 transition-colors font-medium underline-offset-4 hover:underline"
+                className="hover:text-emerald-700 transition-colors font-semibold underline-offset-4 hover:underline"
               >
                 bridabapperidanttprov@gmail.com
               </a>
@@ -61,7 +61,7 @@ export const Footer: React.FC<FooterProps> = ({
               <Clock className="w-4 h-4 text-amber-600" />
               Jam Pelayanan
             </h4>
-            <div className="space-y-2 text-slate-700">
+            <div className="space-y-2 text-black">
               <div className="p-3 rounded-xl bg-slate-50 border border-slate-200/80">
                 <div className="font-semibold text-slate-900">Senin &ndash; Kamis</div>
                 <div className="text-emerald-800 font-mono text-xs font-bold mt-0.5">07.30 &ndash; 16.00 WITA</div>
@@ -71,7 +71,7 @@ export const Footer: React.FC<FooterProps> = ({
                 <div className="text-emerald-800 font-mono text-xs font-bold mt-0.5">07.30 &ndash; 16.30 WITA</div>
               </div>
             </div>
-            <p className="text-[11px] text-slate-500">
+            <p className="text-[11px] text-black font-medium">
               Sabtu, Minggu & Hari Libur Nasional: Tutup Pelayanan Kantor
             </p>
           </div>
@@ -85,21 +85,21 @@ export const Footer: React.FC<FooterProps> = ({
             <div className="p-5 rounded-2xl bg-slate-50 border border-slate-200 text-center space-y-3">
               {/* Hari Ini */}
               <div className="flex items-center justify-between pb-3 border-b border-slate-200 text-xs">
-                <span className="text-slate-600 font-medium">Kunjungan Hari Ini:</span>
+                <span className="text-black font-semibold">Kunjungan Hari Ini:</span>
                 <span className="text-base font-extrabold text-emerald-700 font-mono tabular-nums">
-                  {todayVisitorCount.toLocaleString('id-ID')} <span className="text-[10px] font-normal text-slate-500 font-sans">Sesi</span>
+                  {todayVisitorCount.toLocaleString('id-ID')} <span className="text-[10px] font-bold text-black font-sans">Sesi</span>
                 </span>
               </div>
 
               {/* Total Pengunjung */}
               <div>
-                <span className="text-[10px] uppercase font-bold text-slate-500 tracking-wider block mb-1">
+                <span className="text-[10px] uppercase font-bold text-black tracking-wider block mb-1">
                   Total Pengunjung Portal
                 </span>
                 <div className="text-2xl font-black text-slate-900 font-mono tabular-nums tracking-widest">
                   [ {formatVisitor(totalVisitorCount)} ]
                 </div>
-                <span className="text-[10px] text-slate-500 block mt-0.5">
+                <span className="text-[10px] text-black font-medium block mt-0.5">
                   Tercatat otomatis secara real-time
                 </span>
               </div>
@@ -109,7 +109,7 @@ export const Footer: React.FC<FooterProps> = ({
 
         {/* Bottom Bar: Clean White, Hak Cipta & Tombol Login Admin Pojok Kanan Bawah */}
         <div className="mt-10 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4">
-          <p className="text-xs text-slate-500 text-center sm:text-left">
+          <p className="text-xs text-black font-medium text-center sm:text-left">
             &copy; 2026 Bidang Riset dan Inovasi Daerah (RIDA) Bapperida Provinsi Nusa Tenggara Timur. Hak Cipta Dilindungi.
           </p>
 
@@ -117,10 +117,10 @@ export const Footer: React.FC<FooterProps> = ({
           <div className="flex items-center gap-3">
             <button
               onClick={onOpenAdminLogin}
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-slate-600 hover:text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-black hover:text-emerald-800 bg-slate-100 hover:bg-slate-200 border border-slate-300 rounded-lg transition-colors cursor-pointer"
               title="Akses Administrator Portal"
             >
-              <Lock className="w-3.5 h-3.5 text-slate-500" />
+              <Lock className="w-3.5 h-3.5 text-black" />
               <span>Login Admin</span>
             </button>
           </div>

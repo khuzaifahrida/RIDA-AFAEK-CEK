@@ -111,7 +111,7 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
               </h3>
               <button
                 onClick={handleClose}
-                className="p-1.5 text-slate-400 hover:text-slate-700 hover:bg-slate-100 rounded-lg transition-colors"
+                className="p-1.5 text-black hover:bg-slate-100 rounded-lg transition-colors cursor-pointer"
                 aria-label="Tutup"
               >
                 <X className="w-5 h-5" />
@@ -123,10 +123,10 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
                 <div className="w-16 h-16 rounded-full bg-emerald-50 text-emerald-600 flex items-center justify-center mx-auto">
                   <CheckCircle2 className="w-10 h-10" />
                 </div>
-                <h4 className="text-xl font-bold text-slate-900">
+                <h4 className="text-xl font-bold text-black">
                   Terima Kasih atas Masukan Anda!
                 </h4>
-                <p className="text-sm text-slate-600 leading-relaxed max-w-xs mx-auto">
+                <p className="text-sm text-black leading-relaxed max-w-xs mx-auto">
                   Saran dan penilaian Anda sangat berharga dalam meningkatkan kualitas portal RIDA-AFAEK Bapperida NTT.
                 </p>
               </div>
@@ -134,7 +134,7 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
               <form onSubmit={handleSubmit} className="p-6 space-y-5 text-sm">
                 {/* Question 1: Satisfaction Rating with Emojis */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-800 mb-3">
+                  <label className="block text-sm font-bold text-black mb-3">
                     Seberapa puas Anda dengan website RIDA-AFAEK?
                   </label>
                   <div className="grid grid-cols-5 gap-2">
@@ -161,14 +161,14 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
 
                 {/* Question 2: Asal Instansi Dropdown */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-800 mb-2">
+                  <label className="block text-sm font-bold text-black mb-2">
                     Asal Instansi
                   </label>
                   <div className="relative">
                     <select
                       value={instansi}
                       onChange={(e) => setInstansi(e.target.value)}
-                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-800 appearance-none focus:outline-hidden focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm"
+                      className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-black appearance-none focus:outline-hidden focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm font-medium"
                     >
                       <option value="">Pilih Asal Instansi</option>
                       <option value="Bapperida Provinsi NTT">Bapperida Provinsi NTT</option>
@@ -188,9 +188,9 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
                       <option value="Masyarakat Umum">Masyarakat Umum</option>
                       <option value="Lainnya">Lainnya</option>
                     </select>
-                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-slate-400">
+                    <div className="pointer-events-none absolute inset-y-0 right-0 flex items-center px-3 text-black">
                       <svg className="w-4 h-4 fill-current" viewBox="0 0 20 20">
-                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
+                        <path d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" />
                       </svg>
                     </div>
                   </div>
@@ -198,7 +198,7 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
 
                 {/* Question 3: Apa yang dapat kami tingkatkan? (Multi-select pill tags) */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-800 mb-2">
+                  <label className="block text-sm font-bold text-black mb-2">
                     Apa yang dapat kami tingkatkan?
                   </label>
                   <div className="flex flex-wrap gap-2">
@@ -209,10 +209,10 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
                           key={tag}
                           type="button"
                           onClick={() => toggleTag(tag)}
-                          className={`px-3.5 py-1.5 rounded-full text-xs font-medium border transition-colors ${
+                          className={`px-3.5 py-1.5 rounded-full text-xs font-semibold border transition-colors ${
                             isSelected
-                              ? 'bg-sky-50 border-sky-500 text-sky-800'
-                              : 'bg-white border-sky-300 text-sky-700 hover:bg-sky-50/50'
+                              ? 'bg-sky-50 border-sky-500 text-sky-900'
+                              : 'bg-white border-slate-300 text-black hover:bg-slate-50'
                           }`}
                         >
                           {tag}
@@ -224,7 +224,7 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
 
                 {/* Question 4: Saran dan Masukkan (Textarea) */}
                 <div>
-                  <label className="block text-sm font-medium text-slate-800 mb-2">
+                  <label className="block text-sm font-bold text-black mb-2">
                     Saran dan Masukkan
                   </label>
                   <textarea
@@ -232,17 +232,17 @@ export const FloatingFeedbackWidget: React.FC<FloatingFeedbackWidgetProps> = ({
                     value={comment}
                     onChange={(e) => setComment(e.target.value)}
                     placeholder="Tuliskan saran konstruktif Anda untuk kemajuan platform..."
-                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-slate-900 placeholder:text-slate-400 focus:outline-hidden focus:ring-2 focus:ring-sky-500 focus:border-sky-500 text-sm resize-none"
+                    className="w-full px-3.5 py-2.5 bg-white border border-slate-300 rounded-xl text-black placeholder:text-slate-600 focus:outline-hidden focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 text-sm resize-none font-normal"
                   />
                 </div>
 
-                {/* Submit button (Matching the gray solid button in Image 2) */}
+                {/* Submit button */}
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 px-4 text-sm font-bold text-white bg-slate-500 hover:bg-slate-600 active:bg-slate-700 rounded-xl shadow-xs transition-colors"
+                    className="w-full py-3 px-4 text-sm font-bold text-white bg-emerald-700 hover:bg-emerald-800 active:bg-emerald-900 rounded-xl shadow-xs transition-colors cursor-pointer"
                   >
-                    Submit
+                    Kirim Masukan
                   </button>
                 </div>
               </form>

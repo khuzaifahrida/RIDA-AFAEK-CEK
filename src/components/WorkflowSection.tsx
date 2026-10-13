@@ -51,10 +51,10 @@ export const WorkflowSection: React.FC = () => {
           <span className="text-xs font-bold text-emerald-700 uppercase tracking-widest">
             Alur Penjaringan
           </span>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight" style={{ textWrap: 'balance' }}>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-black tracking-tight" style={{ textWrap: 'balance' }}>
             Bagaimana Cara Kerjanya?
           </h2>
-          <p className="text-base sm:text-lg text-slate-600 leading-relaxed" style={{ textWrap: 'balance' }}>
+          <p className="text-sm sm:text-base text-black leading-relaxed" style={{ textWrap: 'balance' }}>
             Empat tahapan sederhana dalam instrumen penjaringan usulan riset untuk memfasilitasi kebutuhan kebijakan strategis daerah.
           </p>
         </div>
@@ -73,20 +73,20 @@ export const WorkflowSection: React.FC = () => {
                   <div className="w-10 h-10 rounded-xl bg-slate-900 text-white font-black text-sm flex items-center justify-center shrink-0">
                     0{step.number}
                   </div>
-                  <div className="text-slate-400 group-hover:text-emerald-600 transition-colors">
+                  <div className="text-black group-hover:text-emerald-600 transition-colors">
                     <Icon className="w-5 h-5" />
                   </div>
                 </div>
 
-                <h3 className="text-lg font-bold text-slate-900 mb-2">
+                <h3 className="text-base font-bold text-black mb-2">
                   {step.title}
                 </h3>
-                <p className="text-sm text-slate-600 leading-relaxed mb-6">
+                <p className="text-xs sm:text-sm text-black leading-relaxed mb-6 font-normal">
                   {step.desc}
                 </p>
 
                 {/* Sub info */}
-                <div className="mt-auto pt-3 border-t border-slate-200/80 flex items-center gap-1.5 text-xs font-medium text-emerald-800">
+                <div className="mt-auto pt-3 border-t border-slate-200/80 flex items-center gap-1.5 text-xs font-semibold text-emerald-800">
                   <Check className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
                   <span className="truncate">{step.output}</span>
                 </div>

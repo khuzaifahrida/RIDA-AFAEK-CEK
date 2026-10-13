@@ -48,13 +48,13 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
             <button
               onClick={handlePrint}
               title="Cetak Berkas Usulan"
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+              className="p-2 text-black hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
             >
               <Printer className="w-5 h-5" />
             </button>
             <button
               onClick={onClose}
-              className="p-2 text-slate-400 hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
+              className="p-2 text-black hover:text-white hover:bg-slate-800 rounded-lg transition-colors"
               aria-label="Tutup modal"
             >
               <X className="w-6 h-6" />
@@ -67,7 +67,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
           {/* Key Summary Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-black uppercase tracking-wider block mb-1">
                 Tingkat Urgensi
               </span>
               <span className="inline-flex items-center gap-1.5 font-bold text-amber-800 text-sm">
@@ -77,7 +77,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-black uppercase tracking-wider block mb-1">
                 Kesiapan Anggaran
               </span>
               <span className="text-xs font-medium text-slate-800 line-clamp-2">
@@ -86,7 +86,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200">
-              <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider block mb-1">
+              <span className="text-xs font-semibold text-black uppercase tracking-wider block mb-1">
                 Penanggung Jawab
               </span>
               <span className="font-semibold text-slate-900 text-xs block truncate">
@@ -97,7 +97,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
           {/* 1. Isu Krusial & Akar Masalah */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-1.5">
               <AlertCircle className="w-4 h-4 text-emerald-600" />
               1. Deskripsi Isu Krusial & Tantangan Utama
             </h4>
@@ -108,7 +108,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
           {/* 2. Mengapa Belum Selesai */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-1.5">
               <FileCheck className="w-4 h-4 text-amber-600" />
               2. Mengapa Belum Dapat Diselesaikan Kebijakan Saat Ini?
             </h4>
@@ -119,7 +119,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
           {/* 3. IKU & Program Prioritas Terdampak */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-1.5">
               <FileText className="w-4 h-4 text-teal-600" />
               3. Indikator Kinerja Utama (IKU/Renstra) Terdampak Langsung
             </h4>
@@ -130,7 +130,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
           {/* 4. Rekomendasi / Keluaran Riset yang Diharapkan */}
           <div className="space-y-2">
-            <h4 className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1.5">
+            <h4 className="text-xs font-bold text-black uppercase tracking-wider flex items-center gap-1.5">
               <CheckCircle className="w-4 h-4 text-emerald-600" />
               4. Bentuk Rekomendasi / Output Riset yang Diharapkan
             </h4>
@@ -142,21 +142,21 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
           {/* 5. Riwayat Riset Terdahulu */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-black uppercase tracking-wider block">
                 Pernah Dilakukan Riset/Intervensi Sebelumnya?
               </span>
               <p className="font-semibold text-slate-900 text-xs">
                 {proposal.pernahRisetSebelumnya || 'Belum pernah'}
               </p>
               {proposal.keteranganRisetSebelumnya && (
-                <p className="text-xs text-slate-600 pt-2 border-t border-slate-200/80 mt-2">
+                <p className="text-xs text-black pt-2 border-t border-slate-200/80 mt-2">
                   {proposal.keteranganRisetSebelumnya}
                 </p>
               )}
             </div>
 
             <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-1">
-              <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+              <span className="text-xs font-bold text-black uppercase tracking-wider block">
                 Bentuk Potensi Kolaborasi dengan RIDA Bapperida
               </span>
               <p className="text-xs text-slate-800 leading-relaxed font-medium">
@@ -167,21 +167,21 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
           {/* 6. Pelibatan Universitas & Mitra */}
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-3">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+            <span className="text-xs font-bold text-black uppercase tracking-wider block">
               Pelibatan Perguruan Tinggi / Mitra Riset
             </span>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
               <div>
-                <span className="text-slate-500 block">Status Pelibatan:</span>
+                <span className="text-black block">Status Pelibatan:</span>
                 <span className="font-semibold text-slate-900">{proposal.pelibatanMitra}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Peran Spesifik yang Dibutuhkan:</span>
+                <span className="text-black block">Peran Spesifik yang Dibutuhkan:</span>
                 <span className="font-semibold text-slate-900">{proposal.peranSpesifikMitra || '-'}</span>
               </div>
               {proposal.rekomendasiMitra && (
                 <div className="sm:col-span-2 pt-2 border-t border-slate-200">
-                  <span className="text-slate-500 block">Mitra yang Direkomendasikan:</span>
+                  <span className="text-black block">Mitra yang Direkomendasikan:</span>
                   <span className="font-bold text-emerald-800">{proposal.rekomendasiMitra}</span>
                 </div>
               )}
@@ -190,15 +190,15 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
           {/* 7. Kesiapan Data & Dokumen Dukung */}
           <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 space-y-2">
-            <span className="text-xs font-bold text-slate-500 uppercase tracking-wider block">
+            <span className="text-xs font-bold text-black uppercase tracking-wider block">
               Data & Dokumen Pendukung
             </span>
             <div className="text-xs space-y-1">
               <p className="text-slate-800">
-                <strong className="text-slate-600">Dokumen Dimiliki:</strong> {proposal.dokumenPendukung}
+                <strong className="text-black">Dokumen Dimiliki:</strong> {proposal.dokumenPendukung}
               </p>
               <p className="text-slate-800">
-                <strong className="text-slate-600">Kesiapan Berbagi Data (Sharing Data):</strong>{' '}
+                <strong className="text-black">Kesiapan Berbagi Data (Sharing Data):</strong>{' '}
                 <span className="text-emerald-700 font-semibold">{proposal.kesiapanSharingData}</span>
               </p>
             </div>
@@ -207,7 +207,7 @@ export const ProposalDetailModal: React.FC<ProposalDetailModalProps> = ({
 
         {/* Footer */}
         <div className="p-4 bg-slate-50 border-t border-slate-200 flex items-center justify-between">
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-black">
             ID Usulan: <span className="font-mono text-slate-700">{proposal.id}</span>
           </span>
           <button
